@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IW Tech Test</title>
+    <link rel="stylesheet" href="assets/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="assets/jquery-3.3.1.min.js"></script>
+
+</head>
+<body>
+<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+    <header class="masthead mb-auto">
+        <div class="inner">
+            <h3 class="masthead-brand">Infinity Works Tech Test</h3>
+        </div>
+    </header>
+
+    <main role="main" class="inner cover">
+        <h1 class="cover-heading">Food Agency Data Summarizer.</h1>
+        <p class="lead">This summarizer will take take all the data from a specific authority, and show you how the food
+            hygiene ratings are distributed.</p>
+        <p><label> Select an Authority:
+            <select class="js-authority-select">
+                <!-- auto filled in -->
+            </select>
+        </label></p>
+        <table class="table table-dark table-striped">
+            <thead>
+            <tr>
+                <th>Rating</th>
+                <th>Percentage</th>
+            </tr>
+            </thead>
+            <tbody class="js-authority-table">
+                <!-- auto filled in -->
+            </tbody>
+        </table>
+
+    </main>
+
+    <footer class="mastfoot mt-auto">
+        <div class="inner">
+            <p><a href="http://www.inifinityworks.com">Infinity Works</a> - Full Stack Tech Test. <a
+                    href="https://engineering.infinityworks.com/hiring-our-jugglers/" class="btn btn-secondary">Find out
+                more?</a></p>
+        </div>
+    </footer>
+</div>
+
+<script>
+    $(function () {
+
+        $('.js-authority-select').on('change', function () {
+            loadAuthority(this.value);
+        });
+
+        $.get('/api', {}, function (resp) {
+            var selectElem = $('.js-authority-select');
+            selectElem.html('');
+            $.each(resp, function (key, authority) {
+                if(key === 0){
+                    loadAuthority(authority.id);
+                }
+                selectElem.append('<option value="' + authority.id + '">' + authority.name + '</option>');
+            });
+
+        });
+
+
+    });
+
+    function loadAuthority(id) {
+        $.get('/api/' + id, {}, function (resp) {
+            var tableElem = $('.js-authority-table');
+            tableElem.html('');
+            $.each(resp, function (key, rating) {
+                tableElem.append('<tr><td>' + rating.name + '</td><td>' + rating.value.toFixed(1) + '%</td></tr>');
+            });
+        });
+    }
+</script>
+
+</body>
+</html>
+
