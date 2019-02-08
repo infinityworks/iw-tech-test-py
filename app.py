@@ -1,6 +1,7 @@
 import requests
 from flask import Flask, json, Response, send_from_directory, send_file
 
+MIME_JSON = 'application/json'
 
 def create_app() -> Flask:
     """Create a configured Flash app instance."""
@@ -23,7 +24,7 @@ def create_app() -> Flask:
         uri = app.config['FSA_API_URI'] + '/Authorities'
         resp = requests.get(uri, headers={'x-api-version': '2'})
 
-        if resp.status_code != 200:
+        if resp.status_code != requests.codes.ok:
             raise requests.HTTPError('FSA API call to {} returned error {}'.format(uri, resp.status_code))
 
         authorities = []
@@ -35,7 +36,7 @@ def create_app() -> Flask:
                 }
             )
 
-        return Response(json.dumps(authorities), mimetype='application/json')
+        return Response(json.dumps(authorities), mimetype=MIME_JSON)
 
     @app.route('/api/<int:authority_id>')
     def get_authority(authority_id: int) -> Response:
@@ -60,7 +61,7 @@ def create_app() -> Flask:
                 {'name': 'Exempt', 'value': 25}
             ]
 
-        return Response(json.dumps(demo), mimetype='application/json')
+        return Response(json.dumps(demo), mimetype=MIME_JSON)
 
     return app
 
