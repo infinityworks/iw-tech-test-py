@@ -1,25 +1,35 @@
-IW Python Tech Test
-===================
+# Infinity Works - Full Stack Tech Test: Python
 
 Python version of the Infinity Works technical test. It uses the `flask`_ microframework.
 
 .. _flask: http://flask.pocoo.org
 
-Setting up
-==========
+![Preview of Frontend](preview.png)
 
-Assumes you have cloned the repo and have Python 3 available.
+## Prerequisites
 
-Create and activate a new virtual environment::
+* Python 3
+* Clone this repo
+* Access to the internet
+* Suitable development environment
+
+## Getting Started
+
+* Create and activate a new virtual environment:
 
     $ python3 -m venv venv
     $ . venv/bin/activate
 
-Install dependencies::
+* Install dependencies::
 
     $ pip install -e .
 
-Start the app::
+* Start the app:
     $ python app.py
 
-Visit http://localhost:5000 to receive the application.
+* Visit http://localhost:5000 to receive the application.
+
+## Submission
+
+* Please do not fork this repository.
+* Please do not commit your code to GitHub.
