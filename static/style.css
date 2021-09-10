@@ -27,7 +27,7 @@ a:hover {
 html,
 body {
     height: 100%;
-    background: #333 url(background.jpg);
+    background: #333 url(/static/background.jpg);
     background-size: cover;
 }
 
@@ -63,7 +63,7 @@ body {
     padding: 0;
     height: 25px;
     text-indent: -9999px;
-    background: transparent url(site-logo.svg) no-repeat center top;
+    background: transparent url(/static/site-logo.svg) no-repeat center top;
     background-size: 640px 25px;
 }
 
