@@ -1,20 +1,14 @@
 import requests
-from flask import jsonify, Flask, Response, send_from_directory, send_file
+from flask import jsonify, Flask, Response, render_template
 
 app = Flask(__name__, instance_relative_config=True)
 app.config['FSA_API_URI'] = 'http://api.ratings.food.gov.uk'
 
 
-@app.get('/assets/<path:path>')
-def send_js(path) -> Response:
-    """Send assets (JS, CSS, etc."""
-    return send_from_directory('static/assets', path)
-
-
 @app.get('/')
-def send_index() -> Response:
+def index() -> str:
     """Send static HTML page for the front-end."""
-    return send_file('static/index.html')
+    return render_template('index.html')
 
 
 @app.get('/api')

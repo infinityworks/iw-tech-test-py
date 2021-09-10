@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>IW Tech Test</title>
-    <link rel="stylesheet" href="assets/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/style.css">
-    <script src="assets/jquery-3.3.1.min.js"></script>
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='jquery-3.6.0.min.js') }}"></script>
 </head>
 <body>
 <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
@@ -14,10 +14,9 @@
             <h3 class="masthead-brand">Infinity Works Tech Test</h3>
         </div>
     </header>
-
     <main role="main" class="inner cover">
         <h1 class="cover-heading">Food Agency Data Summarizer.</h1>
-        <p class="lead">This summarizer will take take all the data from a specific authority, and show you how the food
+        <p class="lead">This summarizer will take all the data from a specific authority, and show you how the food
             hygiene ratings are distributed.</p>
         <p><label> Select an Authority:
             <select class="js-authority-select">
@@ -32,24 +31,20 @@
             </tr>
             </thead>
             <tbody class="js-authority-table">
-                <!-- auto filled in -->
+            <!-- auto filled in -->
             </tbody>
         </table>
-
     </main>
-
     <footer class="mastfoot mt-auto">
         <div class="inner">
-            <p><a href="http://www.inifinityworks.com">Infinity Works</a> - Full Stack Tech Test. <a
+            <p><a href="https://www.infinityworks.com">Infinity Works</a> - Full Stack Tech Test. <a
                     href="https://engineering.infinityworks.com/hiring-our-jugglers/" class="btn btn-secondary">Find out
                 more?</a></p>
         </div>
     </footer>
 </div>
-
 <script>
     $(function () {
-
         $('.js-authority-select').on('change', function () {
             loadAuthority(this.value);
         });
@@ -58,15 +53,12 @@
             var selectElem = $('.js-authority-select');
             selectElem.html('');
             $.each(resp, function (key, authority) {
-                if(key === 0){
+                if (key === 0) {
                     loadAuthority(authority.id);
                 }
                 selectElem.append('<option value="' + authority.id + '">' + authority.name + '</option>');
             });
-
         });
-
-
     });
 
     function loadAuthority(id) {
@@ -79,7 +71,5 @@
         });
     }
 </script>
-
 </body>
 </html>
-
