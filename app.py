@@ -2,22 +2,22 @@ import requests
 from flask import jsonify, Flask, Response, send_from_directory, send_file
 
 app = Flask(__name__, instance_relative_config=True)
-app.config['FSA_API_URI'] = "http://api.ratings.food.gov.uk"
+app.config['FSA_API_URI'] = 'http://api.ratings.food.gov.uk'
 
 
-@app.route('/assets/<path:path>')
+@app.get('/assets/<path:path>')
 def send_js(path) -> Response:
     """Send assets (JS, CSS, etc."""
     return send_from_directory('static/assets', path)
 
 
-@app.route('/')
+@app.get('/')
 def send_index() -> Response:
     """Send static HTML page for the front-end."""
     return send_file('static/index.html')
 
 
-@app.route('/api')
+@app.get('/api')
 def get_authorities() -> Response:
     """Fetch authorities and return a list of their IDs and name."""
     uri = app.config['FSA_API_URI'] + '/Authorities'
@@ -38,7 +38,7 @@ def get_authorities() -> Response:
     return jsonify(authorities)
 
 
-@app.route('/api/<int:authority_id>')
+@app.get('/api/<int:authority_id>')
 def get_authority(authority_id: int) -> Response:
     """Fetch ratings for an establishment and return summary information."""
     # This is just sample data to demonstrate what the front-end is expecting
