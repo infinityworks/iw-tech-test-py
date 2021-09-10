@@ -29,7 +29,7 @@ Python version of the Infinity Works technical test. It uses the [Flask](https:/
     flask run
     ```
 
-* Visit [`http://localhost:5000`](http://localhost:5000/) to view the application.
+* Visit [`http://127.0.0.1:5000/`](http://127.0.0.1:5000/) to view the application.
 
 ## Submission
 
