@@ -1,7 +1,7 @@
 import requests
 from flask import Flask, Response, jsonify, render_template
 
-app = Flask(__name__, instance_relative_config=True)
+app = Flask(__name__)
 app.config["FSA_API_URI"] = "http://api.ratings.food.gov.uk"
 
 
