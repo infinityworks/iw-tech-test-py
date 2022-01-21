@@ -6,7 +6,7 @@ Python version of the Infinity Works technical test. It uses the [Flask](https:/
 
 ## Prerequisites
 
-* Python 3
+* [Python 3.7 or newer](https://www.python.org/)
 * Clone this repo
 * Access to the internet
 * Suitable development environment
